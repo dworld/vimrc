@@ -11,11 +11,13 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'SirVer/ultisnips'
 
+Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplete'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'fatih/vim-go'
-
+Plugin 'adamclerk/vim-razor'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -24,12 +26,24 @@ filetype plugin indent on    " required
 " self settings
 " ---------------------------------------------------------------------------
 syntax on
-set nu ci
+set nowrap
+set nu ai
 set ts=4 sw=4
 set completeopt-=preview
 syntax on
 
+"Automatically remove trailing spaces when saving a file.
+autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+
 let g:neocomplete#enable_at_startup = 1
+
+au BufRead,BufNewFile *.thrift set filetype=thrift
+au! Syntax thrift source ~/.vim/thrift.vim
+
+" vim-go settings
+" ---------------------------------------------------------------------------
+let g:go_disable_autoinstall = 1
+" let g:go_auto_type_info = 1
 
 " tagbar
 let g:tagbar_left = 1
@@ -61,3 +75,10 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 	\ }
+
+" key mapping
+" ---------------------------------------------------------------------------
+au FileType go nmap gd <Plug>(go-def)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
