@@ -18,6 +18,8 @@ Plugin 'Shougo/neocomplete'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
 Plugin 'fatih/vim-go'
 Plugin 'adamclerk/vim-razor'
+Plugin 'pangloss/vim-javascript'
+Plugin 'myint/indent-finder'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -30,6 +32,7 @@ set nowrap
 set nu ai
 set ts=4 sw=4
 set completeopt-=preview
+set bg=dark
 syntax on
 
 "Automatically remove trailing spaces when saving a file.
