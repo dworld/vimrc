@@ -20,6 +20,9 @@ Plugin 'fatih/vim-go'
 Plugin 'adamclerk/vim-razor'
 Plugin 'pangloss/vim-javascript'
 Plugin 'myint/indent-finder'
+Plugin 'majutsushi/tagbar'
+Plugin 'ervandew/supertab'
+Plugin 'vim-ruby/vim-ruby'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -40,12 +43,15 @@ autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 let g:neocomplete#enable_at_startup = 1
 
+autocmd FileType ruby let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
 au BufRead,BufNewFile *.thrift set filetype=thrift
 au! Syntax thrift source ~/.vim/thrift.vim
 
 " vim-go settings
 " ---------------------------------------------------------------------------
 let g:go_disable_autoinstall = 1
+let g:go_fmt_command = "goimports"
 " let g:go_auto_type_info = 1
 
 " tagbar
