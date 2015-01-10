@@ -23,6 +23,8 @@ Plugin 'myint/indent-finder'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
+Plugin 'hallison/vim-ruby-sinatra'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -36,6 +38,7 @@ set nu ai
 set ts=4 sw=4
 set completeopt-=preview
 set bg=dark
+set clipboard=unnamed
 syntax on
 
 "Automatically remove trailing spaces when saving a file.
@@ -91,3 +94,6 @@ au FileType go nmap gd <Plug>(go-def)
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
+
+nmap <C-i> :CtrlPBuffer<CR>
+
