@@ -24,7 +24,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
-Plugin 'hallison/vim-ruby-sinatra'
+Plugin 'ponzellus/AnsiEsc'
+Plugin 'scrooloose/syntastic'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -88,6 +89,19 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
 	\ }
 
+" syntastic
+" ---------------------------------------------------------------------------
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_ruby_checkers = ['mri']
+au FileType go let g:syntastic_auto_loc_list = 0
+
 " key mapping
 " ---------------------------------------------------------------------------
 au FileType go nmap gd <Plug>(go-def)
@@ -96,4 +110,3 @@ au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 
 nmap <C-h> :CtrlPBuffer<CR>
-
