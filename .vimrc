@@ -26,6 +26,9 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'ponzellus/AnsiEsc'
 Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-gitgutter'
+Plugin 'bling/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -46,6 +49,7 @@ syntax on
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 
 let g:neocomplete#enable_at_startup = 1
+" let g:airline#extensions#tabline#enabled = 1
 
 autocmd FileType ruby let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
@@ -110,3 +114,4 @@ au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 
 nmap <C-h> :CtrlPBuffer<CR>
+nmap <C-y> :NERDTreeToggle<CR>
