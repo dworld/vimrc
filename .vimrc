@@ -29,6 +29,9 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-gitgutter'
 Plugin 'bling/vim-airline'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'Yggdroot/indentLine'
+Plugin 'KurtPreston/vim-autoformat-rails'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -44,6 +47,9 @@ set completeopt-=preview
 set bg=dark
 set clipboard=unnamed
 syntax on
+colorscheme jellybeans
+
+let g:indentLine_color_term = 236
 
 "Automatically remove trailing spaces when saving a file.
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
@@ -51,7 +57,8 @@ autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 let g:neocomplete#enable_at_startup = 1
 " let g:airline#extensions#tabline#enabled = 1
 
-autocmd FileType ruby let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+au FileType ruby let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+au BufWrite *.rb :silent! call AutoFormatRails()<CR>
 
 au BufRead,BufNewFile *.thrift set filetype=thrift
 au! Syntax thrift source ~/.vim/thrift.vim
