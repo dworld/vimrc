@@ -25,13 +25,14 @@ Plugin 'ervandew/supertab'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'ponzellus/AnsiEsc'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'KurtPreston/vim-autoformat-rails'
+Plugin 'solarnz/thrift.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -46,9 +47,12 @@ set ts=4 sw=4
 set completeopt-=preview
 set bg=dark
 set clipboard=unnamed
+set noswapfile
+
 syntax on
 colorscheme jellybeans
 
+" let g:syntastic_debug = 1
 let g:indentLine_color_term = 236
 
 "Automatically remove trailing spaces when saving a file.
@@ -58,10 +62,7 @@ let g:neocomplete#enable_at_startup = 1
 " let g:airline#extensions#tabline#enabled = 1
 
 au FileType ruby let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-au BufWrite *.rb :silent! call AutoFormatRails()<CR>
-
-au BufRead,BufNewFile *.thrift set filetype=thrift
-au! Syntax thrift source ~/.vim/thrift.vim
+" au BufWrite *.rb :silent! call AutoFormatRails()<CR>
 
 " vim-go settings
 " ---------------------------------------------------------------------------
@@ -110,7 +111,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_ruby_checkers = ['mri']
+let g:syntastic_enable_java_checker = 0
+" let g:syntastic_ruby_checkers = ['mri']
 au FileType go let g:syntastic_auto_loc_list = 0
 
 " key mapping
@@ -119,6 +121,8 @@ au FileType go nmap gd <Plug>(go-def)
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
+
+autocmd filetype crontab setlocal nobackup nowritebackup
 
 nmap <C-h> :CtrlPBuffer<CR>
 nmap <C-y> :NERDTreeToggle<CR>
